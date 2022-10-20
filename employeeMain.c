@@ -7,7 +7,9 @@
 int main(void) { 
     //defined in employeeSearchOne.c ---defining function created in employeeOne.c
     PtrToEmployee searchEmployeeByNumber(const Employee table[], int sizeTable, long numberToFind);
-    PtrToEmployee searchEmployeeByName(const Employee table[], int sizeTable, char * nameToFind);  
+    PtrToEmployee searchEmployeeByName(const Employee table[], int sizeTable, char * nameToFind);
+    PtrToEmployee searchEmployeeByPhone(const Employee table[], int sizeTable, char * phoneToFine);
+    PtrToEmployee searchEmployeeBySalary(const Employee table[], int sizeTable, double salaryToFine);  
 
     //defined in employeeTable.c ---don't allocate space for these
     extern Employee EmployeeTable[];  
@@ -27,7 +29,21 @@ int main(void) {
     if (matchPtr != NULL) 
         printf("Employee Tony Bobcat is in record %d\n", matchPtr - EmployeeTable); 
     else 
-        printf("Employee Tony Bobcat is NOT found in the record\n");      
+        printf("Employee Tony Bobcat is NOT found in the record\n");
+
+    matchPtr = searchEmployeeByPhone(EmployeeTable, EmployeeTableEntries, "909-555-2134");
+    if (matchPtr != NULL)
+        printf("Employee Phone Number is in the record %d\n", matchPtr - EmployeeTable);
+    else
+        printf("Employee Phone Number is NOT found in the record\n");
+    
+    matchPtr = searchEmployeeBySalary(EmployeeTable, EmployeeTableEntries, 4.50); 
+    if (matchPtr != NULL) 
+        printf("Employee Salary is in record %d\n", matchPtr - EmployeeTable); 
+    else 
+        printf("Employee Salary is NOT found in the record\n");
+    
+
 
     return EXIT_SUCCESS; 
 }    
